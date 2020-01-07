@@ -1,0 +1,4 @@
+# xubxWorkSpace
+springboot 整合jta-atomikos实现多数据源及分布式事务管理
+引入jar包，各数据库分别定义DataSource、SqlSessionFactory、SqlSessionTemplate，无需定义DataSourceTransactionManager，
+把DataSourceTransactionManager交由AtomikosDataSourceBean（在DataSource中实现）来管理
