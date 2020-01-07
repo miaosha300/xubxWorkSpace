@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xubx.mapper2.AcBillFlowRouteMapper">
+  <resultMap id="BaseResultMap" type="xubx.entity.AcBillFlowRoute">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="id_type" jdbcType="VARCHAR" property="idType" />
+    <result column="identifier" jdbcType="VARCHAR" property="identifier" />
+    <result column="bill_type" jdbcType="VARCHAR" property="billType" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_update" jdbcType="TIMESTAMP" property="gmtUpdate" />
+    <result column="state" jdbcType="TINYINT" property="state" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, id_type, identifier, bill_type, user_id, gmt_create, gmt_update, state
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from ac_bill_flow_route
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from ac_bill_flow_route
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="xubx.entity.AcBillFlowRoute">
+    insert into ac_bill_flow_route (id, id_type, identifier,
+      bill_type, user_id, gmt_create,
+      gmt_update, state)
+    values (#{id,jdbcType=BIGINT}, #{idType,jdbcType=VARCHAR}, #{identifier,jdbcType=VARCHAR},
+      #{billType,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=TIMESTAMP},
+      #{gmtUpdate,jdbcType=TIMESTAMP}, #{state,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="xubx.entity.AcBillFlowRoute">
+    insert into ac_bill_flow_route
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="idType != null">
+        id_type,
+      </if>
+      <if test="identifier != null">
+        identifier,
+      </if>
+      <if test="billType != null">
+        bill_type,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtUpdate != null">
+        gmt_update,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="idType != null">
+        #{idType,jdbcType=VARCHAR},
+      </if>
+      <if test="identifier != null">
+        #{identifier,jdbcType=VARCHAR},
+      </if>
+      <if test="billType != null">
+        #{billType,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtUpdate != null">
+        #{gmtUpdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="xubx.entity.AcBillFlowRoute">
+    update ac_bill_flow_route
+    <set>
+      <if test="idType != null">
+        id_type = #{idType,jdbcType=VARCHAR},
+      </if>
+      <if test="identifier != null">
+        identifier = #{identifier,jdbcType=VARCHAR},
+      </if>
+      <if test="billType != null">
+        bill_type = #{billType,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtUpdate != null">
+        gmt_update = #{gmtUpdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+
+
+  <update id="updateRouteByUserId" parameterType="xubx.entity.AcBillFlowRoute">
+    update ac_bill_flow_route
+    <set>
+      <if test="newuserId != null">
+        user_id = #{newuserId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where state = '1'
+    <if test='olduserId != null and  olduserId != ""'>
+      AND user_id = #{olduserId}
+    </if>
+  </update>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <update id="updateByPrimaryKey" parameterType="xubx.entity.AcBillFlowRoute">
+    update ac_bill_flow_route
+    set id_type = #{idType,jdbcType=VARCHAR},
+      identifier = #{identifier,jdbcType=VARCHAR},
+      bill_type = #{billType,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_update = #{gmtUpdate,jdbcType=TIMESTAMP},
+      state = #{state,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="selectByIdentifier" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from ac_bill_flow_route
+    where state = 1 and identifier = #{identifier,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectByIdentifierAndType" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from ac_bill_flow_route
+    where state = 1 and identifier = #{identifier,jdbcType=VARCHAR} and id_type = #{idType,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectUserIdByIdentifierAndType" parameterType="java.lang.String" resultType="java.lang.String">
+    select user_id
+    from ac_bill_flow_route
+    where state = 1 and identifier = #{identifier,jdbcType=VARCHAR}
+    and id_type = #{idType,jdbcType=VARCHAR}
+    and bill_type = #{billType,jdbcType=VARCHAR}
+  </select>
+    <select id="selectByIdentifierAndBillType" parameterType="java.lang.String" resultMap="BaseResultMap">
+      select <include refid="Base_Column_List" />
+    from ac_bill_flow_route
+    where state = 1 and identifier = #{identifier,jdbcType=VARCHAR}
+    </select>
+
+  <select id="selectByIdentifierAndBillTypeAndidType" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from ac_bill_flow_route
+    where state = 1 and identifier = #{identifier,jdbcType=VARCHAR} and id_type = #{idType,jdbcType=VARCHAR}
+    and bill_type = #{billType,jdbcType=VARCHAR}
+  </select>
+</mapper>

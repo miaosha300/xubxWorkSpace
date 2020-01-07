@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xubx.mapper1.RouteMsisdnMapper">
+  <resultMap id="BaseResultMap" type="xubx.entity.RouteMsisdn">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="msisdn" jdbcType="VARCHAR" property="msisdn" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+    <result column="state" jdbcType="TINYINT" property="state" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, msisdn, user_id, gmt_create, gmt_modified, state
+  </sql>
+  <select id="selectByPhone" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from uc_route_msisdn
+    where msisdn = #{phone}
+  </select>
+  <!--mc-->
+    <select id="findByUserId" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from uc_route_msisdn
+        where user_id = #{userId}
+    </select>
+    <delete id="deleteByPhone" parameterType="java.lang.String">
+         delete from uc_route_msisdn
+    where msisdn = #{phone}
+    </delete>
+    <delete id="deleteByUserId" parameterType="java.lang.String">
+        delete from uc_route_msisdn
+        where user_id = #{userId}
+    </delete>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from uc_route_msisdn
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="xubx.entity.RouteMsisdn">
+    insert into uc_route_msisdn (id, msisdn, user_id,
+      gmt_create, gmt_modified, state
+      )
+    values (#{id,jdbcType=BIGINT}, #{msisdn,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR},
+      #{gmtCreate,jdbcType=TIMESTAMP},#{gmtModified,jdbcType=TIMESTAMP}, #{state,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="xubx.entity.RouteMsisdn">
+    insert into uc_route_msisdn
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="msisdn != null">
+        msisdn,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+        <if test="gmtCreate != null">
+            gmt_create,
+        </if>
+      <if test="gmtModified != null">
+        gmt_modified,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="msisdn != null">
+        #{msisdn,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+        <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+        </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="xubx.entity.RouteMsisdn">
+    update uc_route_msisdn
+    <set>
+      <if test="msisdn != null">
+        msisdn = #{msisdn,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=CHAR},
+      </if>
+    </set>
+    where  msisdn = #{msisdn,jdbcType=VARCHAR}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="xubx.entity.RouteMsisdn">
+    update uc_route_msisdn
+    set msisdn = #{msisdn,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      state = #{state,jdbcType=CHAR}
+    where id =  #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByMsisdnAndState" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from uc_route_msisdn
+    where 1=1
+    <if test="routeMsisdn.msisdn != null">
+      and msisdn = #{routeMsisdn.msisdn,jdbcType=VARCHAR}
+    </if>
+    <if test="routeMsisdn.state != null">
+      and state = #{routeMsisdn.state,jdbcType=CHAR}
+    </if>
+  </select>
+  <select id="selectByUserId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from uc_route_msisdn
+    where 1=1
+    <if test="routeMsisdn.userId != null">
+      and user_id = #{routeMsisdn.userId,jdbcType=VARCHAR}
+    </if>
+    <if test="routeMsisdn.state != null">
+      and state = #{routeMsisdn.state,jdbcType=CHAR}
+    </if>
+  </select>
+
+
+  <update id="updateByMsisdnIdSelective" parameterType="xubx.entity.RouteMsisdn">
+    update uc_route_msisdn
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null">
+        state = #{state},
+      </if>
+    </set>
+    where msisdn = #{msisdn,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByRouteMsisdn" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from uc_route_msisdn
+    where 1=1
+    <if test="routeMsisdn.id != null">
+      and id = #{routeMsisdn.id,jdbcType=BIGINT}
+    </if>
+    <if test="routeMsisdn.msisdn != null">
+      and msisdn = #{routeMsisdn.msisdn,jdbcType=VARCHAR}
+    </if>
+    <if test="routeMsisdn.userId != null">
+      and user_id = #{routeMsisdn.userId,jdbcType=VARCHAR}
+    </if>
+    <if test="routeMsisdn.gmtCreate != null">
+      and gmt_create = #{routeMsisdn.gmtCreate,jdbcType=TIMESTAMP}
+    </if>
+    <if test="routeMsisdn.gmtModified != null">
+      and gmt_modified = #{routeMsisdn.gmtModified,jdbcType=TIMESTAMP}
+    </if>
+    <if test="routeMsisdn.state != null">
+      and state = #{routeMsisdn.state,jdbcType=CHAR}
+    </if>
+  </select>
+</mapper>
