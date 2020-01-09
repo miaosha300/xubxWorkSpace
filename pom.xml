@@ -75,9 +75,13 @@
 			<version>5.0.5.RELEASE</version>
 			<scope>test</scope>
 		</dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+        </dependency>
 
 
-	</dependencies>
+    </dependencies>
 
 	<build>
 		<plugins>
