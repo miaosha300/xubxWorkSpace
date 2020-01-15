@@ -1,5 +1,6 @@
 package xubx.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,6 +20,7 @@ import javax.annotation.Resource;
  * 创建时间:   2019/12/16 11:29
  */
 @RestController
+@Slf4j
 public class DataSourceController {
 
 //    @Autowired
@@ -60,6 +62,17 @@ public class DataSourceController {
     @RequestMapping(value = "datasource5")
     public int datasource5() {
         return manyService4.insertDB();
+    }
+
+    @RequestMapping("/log")
+    public String selectStudentMsg() {
+        System.out.println("查询了学生信息");
+        log.trace("trace查询了学生信息");
+        log.info("info查询了学生信息");
+        log.warn("warn查询了学生信息");
+        log.error("erro查询了学生信息");
+        log.debug("debug查询了学生信息");
+        return "查询学生信息成功";
     }
 
 
