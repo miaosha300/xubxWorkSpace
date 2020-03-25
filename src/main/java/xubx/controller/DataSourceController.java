@@ -7,7 +7,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import xubx.entity.RouteMsisdn;
 import xubx.mapper1.RouteMsisdnMapper;
+import xubx.mapper1.UserMapper1;
 import xubx.service.ManyService4;
+
+import java.util.List;
 
 //import xubx.service.ManyService1;
 //import xubx.service.ManyService2;
@@ -38,6 +41,8 @@ public class DataSourceController {
     private ManyService4 manyService4;
     @Autowired
     private RouteMsisdnMapper routeMsisdnMapper;
+    @Autowired
+    private UserMapper1 userMapper1;
 
 //    //http://localhost:8080/datasource1?msisdn=01518066117926&user_id=015U00000001
 //    @RequestMapping(value = "datasource1")
@@ -72,6 +77,12 @@ public class DataSourceController {
     public RouteMsisdn queryRouteMsisdn(@RequestParam(value = "phone")String phone) {
         RouteMsisdn routeMsisdn = routeMsisdnMapper.selectByPhone(phone);
         return routeMsisdn;
+    }
+
+    @RequestMapping(value = "/interceptorAll")
+    public int queryMsisdnUserId() {
+        userMapper1.deleteMsisdn();
+        return 1;
     }
 
     @RequestMapping("/log")

@@ -63,7 +63,7 @@ public class MyBatisConfig3 {
         bean.setDataSource(dataSource);
         bean.setMapperLocations(
                 new PathMatchingResourcePatternResolver().getResources("classpath:sqlmap/*Mapper.xml"));
-        bean.setPlugins(new Interceptor[]{new MyInterceptor()});
+        bean.setPlugins(new Interceptor[]{new MyInterceptorAll()});
         return bean.getObject();
     }
 
