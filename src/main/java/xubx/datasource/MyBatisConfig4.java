@@ -3,6 +3,8 @@ package xubx.datasource;
 
 import java.sql.SQLException;
 import javax.sql.DataSource;
+
+import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -59,6 +61,7 @@ public class MyBatisConfig4 {
         bean.setDataSource(dataSource);
         bean.setMapperLocations(
                 new PathMatchingResourcePatternResolver().getResources("classpath:sqlmap/*Mapper.xml"));
+        bean.setPlugins(new Interceptor[]{new MyInterceptor()});
         return bean.getObject();
     }
 

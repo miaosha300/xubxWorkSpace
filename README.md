@@ -6,4 +6,7 @@ springboot 整合jta-atomikos实现多数据源及分布式事务管理
 # 添加log4j2日志
     -application.properties 配合 log4j.xml使用
         添加log4j2依赖，屏蔽springboot原始日志依赖
+        
+# 添加 myBatis sql 拦截器
+    MyBatisConfig3、MyBatisConfig4添加interceptor插件。添加myInterceptor类，支持query、update拦截
     

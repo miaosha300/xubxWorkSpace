@@ -28,8 +28,8 @@ public class ManyService4 {
     @Transactional
     public int insertMsisdn() {
         RouteMsisdn routeMsisdn = new RouteMsisdn();
-        routeMsisdn.setMsisdn("01518066117926");
-        routeMsisdn.setUserId("015U000000002");
+        routeMsisdn.setMsisdn("01518066117905");
+        routeMsisdn.setUserId("015U000000005");
         Date date = new Date();
         routeMsisdn.setGmtCreate(date);
         routeMsisdn.setGmtModified(date);
@@ -40,8 +40,8 @@ public class ManyService4 {
     @Transactional
     public int insertFlow() {
         AcBillFlowRoute acBillFlowRoute = new AcBillFlowRoute();
-        acBillFlowRoute.setUserId("013U000000002");
-        acBillFlowRoute.setIdentifier("01300000002");
+        acBillFlowRoute.setUserId("013U000000005");
+        acBillFlowRoute.setIdentifier("01300000005");
         Date date = new Date();
         acBillFlowRoute.setGmtCreate(date);
         acBillFlowRoute.setGmtUpdate(date);

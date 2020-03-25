@@ -3,13 +3,15 @@ package xubx.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import xubx.entity.RouteMsisdn;
+import xubx.mapper1.RouteMsisdnMapper;
+import xubx.service.ManyService4;
+
 //import xubx.service.ManyService1;
 //import xubx.service.ManyService2;
 //import xubx.service.ManyService3;
-import xubx.service.ManyService4;
-
-import javax.annotation.Resource;
 
 /**
  * 项目名称:   pinkstone
@@ -34,6 +36,8 @@ public class DataSourceController {
 
     @Autowired
     private ManyService4 manyService4;
+    @Autowired
+    private RouteMsisdnMapper routeMsisdnMapper;
 
 //    //http://localhost:8080/datasource1?msisdn=01518066117926&user_id=015U00000001
 //    @RequestMapping(value = "datasource1")
@@ -62,6 +66,12 @@ public class DataSourceController {
     @RequestMapping(value = "datasource5")
     public int datasource5() {
         return manyService4.insertDB();
+    }
+
+    @RequestMapping(value = "/interceptor")
+    public RouteMsisdn queryRouteMsisdn(@RequestParam(value = "phone")String phone) {
+        RouteMsisdn routeMsisdn = routeMsisdnMapper.selectByPhone(phone);
+        return routeMsisdn;
     }
 
     @RequestMapping("/log")
