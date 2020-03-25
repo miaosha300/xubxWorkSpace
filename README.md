@@ -14,3 +14,7 @@ springboot 整合jta-atomikos实现多数据源及分布式事务管理
 # 添加 myBatis sql 拦截器
     MyBatisConfig3、MyBatisConfig4添加interceptor插件。添加myInterceptorAll类，
     支持query、update、insert、update拦截（requestMapping /interceptorAll）
+    
+# 热部署（参考：https://www.cnblogs.com/mlq2017/p/9633650.html）
+    
+    
